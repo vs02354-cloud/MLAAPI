@@ -1,0 +1,6 @@
+@MLA.Portal.Api_HostAddress = http://localhost:5023
+
+GET {{MLA.Portal.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
