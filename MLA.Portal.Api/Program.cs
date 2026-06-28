@@ -64,7 +64,15 @@ if (app.Environment.IsDevelopment())
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    await db.Database.EnsureCreatedAsync();
+    try
+    {
+        await db.Database.EnsureCreatedAsync();
+        Console.WriteLine("Database schema ensured successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"WARNING: Failed to connect to the database on startup: {ex.Message}");
+    }
 }
 
 app.UseCors("AllowAll");
