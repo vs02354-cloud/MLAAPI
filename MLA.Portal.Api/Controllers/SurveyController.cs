@@ -28,4 +28,11 @@ public class SurveyController : ControllerBase
         }
         return BadRequest(new { Message = errorMessage });
     }
+
+    [HttpGet("check-mobile/{mobileNumber}")]
+    public async Task<IActionResult> CheckMobile(string mobileNumber)
+    {
+        var isRegistered = await _surveyService.IsMobileNumberRegisteredAsync(mobileNumber);
+        return Ok(new { isRegistered });
+    }
 }

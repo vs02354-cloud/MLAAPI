@@ -18,6 +18,11 @@ public class SurveyService : ISurveyService
         _logger = logger;
     }
 
+    public async Task<bool> IsMobileNumberRegisteredAsync(string mobileNumber)
+    {
+        return await _context.Surveys.AnyAsync(s => s.MobileNumber == mobileNumber);
+    }
+
     public async Task<(bool Success, string ErrorMessage)> SubmitSurveyAsync(SubmitSurveyDto request)
     {
         // Check if mobile number already exists
